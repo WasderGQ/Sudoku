@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Board_9x9
+  - Board6x6
   layers:
   - Default
   - TransparentFX

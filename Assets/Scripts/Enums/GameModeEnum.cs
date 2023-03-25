@@ -2,9 +2,9 @@
 
 public enum GameModeEnum 
 {
-    x12 = 4,
-    x9 = 3, 
-    x6 = 2,
-    x3 = 1,
+    x12 = 3,
+    x9 = 2, 
+    x6 = 1,
+    x3 = 0,
 
 }
