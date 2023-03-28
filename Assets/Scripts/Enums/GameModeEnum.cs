@@ -1,6 +1,6 @@
 
 
-public enum GameModeEnum 
+public enum GameBoardsEnum 
 {
     x12 = 3,
     x9 = 2, 
