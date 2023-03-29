@@ -14,6 +14,7 @@ public class MB_Zone : MonoBehaviour
     [SerializeField] private int _myValue;
     [SerializeField] private List<int> _possibleValues;
     [SerializeField] private Button _button;
+    [SerializeField] private MB_Keyboard _keyboard;
 
     private int _changedMyValue
     {
@@ -32,21 +33,23 @@ public class MB_Zone : MonoBehaviour
     }
     
     
+
+    
+
+    #region Publics
+
     public void init()
     {
         WriteParsel();
-        EventStarter();
+        
+        
     }
-   
-    void EventStarter()
+    public MB_Zone SelectedZone()
     {
-
-        _button.onClick.AddListener(RandomlyGivePossibleValue);
-
-
+        return this;
     }
 
-    #region Publics
+
     public void WriteValue(int givenvalue)
     {
         _changedMyValue = givenvalue;
@@ -58,15 +61,10 @@ public class MB_Zone : MonoBehaviour
 
     }
 
-    /*public void WriteId(int id) 
-    { 
     
-    _id = id;
-    
-    }*/
     public void WriteParsel()
     {
-        //_parsel = Parsen;
+        
         _parselID=GetComponentInParent<MB_Parsel>().ReadParselID();
         
     }
@@ -77,12 +75,22 @@ public class MB_Zone : MonoBehaviour
     }
  
     
+    public MB_Zone GiveSelectedZoneToKeyboard()
+    {
+        return this;
+
+
+
+    }
+
     public void RandomlyGivePossibleValue()
     {
 
+       
         WriteValue(_possibleValues[UnityEngine.Random.Range(0, _possibleValues.Count)]);
 
     }
+
 
     public void RemoveMyValueFromPossibleValues()
     {
@@ -100,7 +108,7 @@ public class MB_Zone : MonoBehaviour
     {
 
         this.gameObject.GetComponentInChildren<TextMeshProUGUI>().text=Newvalue.ToString();
-        Debug.Log(Newvalue.ToString());
+        //Debug.Log(Newvalue.ToString());
 
     }
     private bool IsThereMyValueInPossibleValue()

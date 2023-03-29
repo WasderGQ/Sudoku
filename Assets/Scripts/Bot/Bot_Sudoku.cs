@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Unity.Mathematics;
@@ -38,7 +39,7 @@ public class SudokuCreater
     }
 
 
-    private async Task<bool> IsAllZoneValueTrue()
+    /*private async Task<bool> IsAllZoneValueTrue()
     {
 
         for (int row = 0; row <= _zones.GetLength(0); row++)
@@ -116,42 +117,45 @@ public class SudokuCreater
        
         return true;
 
-    }
+    }*/
 
 
     
 
-    async Task<bool> GiveRandomlyValueAllZones()
+    private async Task<bool> GiveRandomlyValueAllZones()
     {
+        await RandomlyFillZoneValues();
+
         for (int row = 0; row <= _zones.GetLength(0); row++)
         {
             for (int colomb = 0; colomb < _zones.GetLength(1); colomb++)
             {
                 
                 
-               /* while(await AmISameWithAnyMyRowZone(row,colomb) && await AmISameWithAnyMyColombZone(row, colomb) && await AmISameWithAnyMyParselZone(row, colomb))
+                while(await AmISameWithAnyMyRowZone(row,colomb) && await AmISameWithAnyMyColombZone(row, colomb) && await AmISameWithAnyMyParselZone(row, colomb))
                 {
+                    _zones[row, colomb].RandomlyGivePossibleValue();
                     _zones[row, colomb].RemoveMyValueFromPossibleValues();
-                    _zones[row,colomb].RandomlyGivePossibleValue();
+                    
 
 
-                }*/
+                }
             }
         }
         
         return true;
+
+
+
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
         /*
         foreach (var item in _zones)
         {
@@ -163,7 +167,23 @@ public class SudokuCreater
 
     }
 
-    async Task<bool> AmISameWithAnyMyRowZone(int row,int colomb)
+
+    private async Task<bool> RandomlyFillZoneValues()
+    {
+        foreach (var zone in _zones)
+        {
+            zone.RandomlyGivePossibleValue();
+            zone.RemoveMyValueFromPossibleValues();
+
+
+
+        }
+
+        return true;
+
+    }
+
+    private async Task<bool> AmISameWithAnyMyRowZone(int row,int colomb)
     {
         
         for (int colombcount = 0; colombcount <= _zones.GetLength(0); colombcount++)
@@ -173,16 +193,19 @@ public class SudokuCreater
             {
                 if (_zones[row, colomb].ReadValue() == _zones[row, colombcount].ReadValue())
                 { return true; }
-                
             }
-            
-            
+            else if(!_zones[row, colomb] == _zones[row, colombcount])
+            {
+                continue;
+
+
+            }
         }
 
         return false;
 
     }
-    async Task<bool> AmISameWithAnyMyColombZone(int row, int colomb )
+    private async Task<bool> AmISameWithAnyMyColombZone(int row, int colomb )
     {
         Debug.Log("Benimle ayný olan deðeri sütunda arýyorum"+ _zones[row, colomb]);
         for (int rowcounter = 0; rowcounter <= _zones.GetLength(0); rowcounter++)
@@ -193,7 +216,12 @@ public class SudokuCreater
                 { return true; }
 
             }
+            else if (_zones[row, colomb] == _zones[rowcounter, colomb])
+            {
+                continue;
 
+
+            }
 
         }
         return false;
@@ -201,7 +229,7 @@ public class SudokuCreater
     }
 
 
-    async Task<bool> AmISameWithAnyMyParselZone(int row, int colomb)
+    private async Task<bool> AmISameWithAnyMyParselZone(int row, int colomb)
     {
         Debug.Log("Benimle ayný olan deðeri parselde arýyorum" + _zones[row, colomb]);
         MB_Parsel currentzoneinparsel = _parsels[_zones[row, colomb].GetMyParsel()];
@@ -213,6 +241,12 @@ public class SudokuCreater
                 { return true; }
 
             }
+            else if (_zones[row, colomb] == zone)
+            {
+                continue;
+
+
+            }
         }
         
         return false;
@@ -220,6 +254,6 @@ public class SudokuCreater
 
     }
 
-    //async Task<bool> AmISame()
+    
     
 }

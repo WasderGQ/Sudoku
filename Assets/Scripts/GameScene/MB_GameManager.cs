@@ -7,7 +7,11 @@ public class MB_GameManager : MonoBehaviour
    [SerializeField] private SO_GameMode _gameMode;
    [SerializeField] private List<MB_Board> _boardList;
    [SerializeField] private SudokuCreater _bot_sudoku;
-    [SerializeField] private int _currentlySelectedBoard;
+   [SerializeField] private int _currentlySelectedBoard;
+  
+    
+
+   
     private void Start()
     {
         init();
@@ -19,10 +23,9 @@ public class MB_GameManager : MonoBehaviour
         GetCurrentBoard();
         GameBoardOpener();
         
+
+
     }
-   
-    
-    
 
     private void GetCurrentBoard()
     {
@@ -33,12 +36,9 @@ public class MB_GameManager : MonoBehaviour
     {
         _boardList[_currentlySelectedBoard].gameObject.SetActive(true);
     }
-
-   /* void RandomlyFillNumbers()
-    {
-        _boardList[_currentlySelectedBoard].RandomlyAddValue();
-
-    }*/
+   
+   
+   
 
 
 

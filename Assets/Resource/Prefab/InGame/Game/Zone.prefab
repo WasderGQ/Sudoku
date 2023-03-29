@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2419934401178779206}
   - component: {fileID: 3406359152217260184}
-  - component: {fileID: 7421318384834716503}
   - component: {fileID: 5543643566879078454}
   - component: {fileID: 6183232836406865140}
+  - component: {fileID: 7321468650072572751}
   m_Layer: 5
   m_Name: Zone
   m_TagString: Untagged
@@ -85,23 +85,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7421318384834716503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703566657018868853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd015ac851cc04a448226a2900f430fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _parselID: 0
-  _myValue: 0
-  _possibleValues: 010000000200000003000000040000000500000006000000070000000800000009000000
-  _button: {fileID: 3406359152217260184}
 --- !u!222 &5543643566879078454
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -140,6 +123,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7321468650072572751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703566657018868853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd015ac851cc04a448226a2900f430fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _parselID: 0
+  _myValue: 0
+  _possibleValues: 010000000200000003000000040000000500000006000000070000000800000009000000
+  _button: {fileID: 3406359152217260184}
+  _keyboard: {fileID: 3471087395982184635, guid: 029c7b6035634dd4091be53c0a5f6295, type: 3}
 --- !u!1 &1335799787886610939
 GameObject:
   m_ObjectHideFlags: 0

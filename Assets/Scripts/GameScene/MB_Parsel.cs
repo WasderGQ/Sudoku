@@ -10,7 +10,7 @@ public class MB_Parsel : MonoBehaviour
     public void init()
     {
         initZones();
-       // GiveParsenAndIDToZones();
+       
         
     }
 
@@ -22,58 +22,22 @@ public class MB_Parsel : MonoBehaviour
             zone.init();
 
         }
-
+        Debug.Log("All Zones In ited XD "+ _myparselID);
 
     }
-    /*private void GiveParsenAndIDToZones()
-    {
-        
-        int counter = 0;
-        foreach(var zone in _zones) 
-        { 
-        zone.WriteId(counter);
-        counter++;
-        zone.WriteParsel(_myparselID);
 
-            
-        }
-        Debug.Log("Zonelara Id ve parselleri verildi");
 
-    }*/
-
-    public int ReadParselID()
-    {
-        return _myparselID;
-    }
     
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-   /* public void RandomlyFillZones()
+    public int ReadParselID()
     {
-        foreach (var zone in _zones) 
-        {
-            zone.RandomlyGiveValue();
-        }
-
-
-
-
-
-    }*/
-
+        return _myparselID;
+    }
+    
 
 
 
