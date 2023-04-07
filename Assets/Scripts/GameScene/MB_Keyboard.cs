@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MB_Keyboard : MonoBehaviour
+public class MB_Keyboard : MonoBehaviour //MonoBehaviour olmasada olur
 {
     [SerializeField] private List<Button> _myButtons;
     [SerializeField] private MB_KeyboardButton _selectedKeyboardKey;
-    [SerializeField] private MB_Zone _selectedZone;
+    [SerializeField] private List<MB_Zone> _selectedZones;
 
 
 
@@ -35,7 +35,8 @@ public class MB_Keyboard : MonoBehaviour
     public void SelectedZoneTaker(MB_Zone takedZone)
     {
 
-        _selectedZone = takedZone;
+        _selectedZones.Add(takedZone);
+        takedZone.GetComponentInChildren<Image>().color = Color.yellow;
 
     }
 
@@ -56,10 +57,16 @@ public class MB_Keyboard : MonoBehaviour
 
     private void KeyboardValueWriter(Button readButton)
     {
-        if (_selectedZone != null)
+        if (_selectedZones != null)
         {
-            _selectedZone.WriteValue(readButton.GetComponent<MB_KeyboardButton>().GiveMyValue());
-            _selectedZone = null;
+            foreach (var zone in _selectedZones)
+            {
+                zone.WriteValue(readButton.GetComponent<MB_KeyboardButton>().GiveMyValue());
+                zone.GetComponentInChildren<Image>().color =Color.white;
+            }
+
+            _selectedZones.Clear();
+
         }
 
         else

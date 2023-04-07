@@ -9,14 +9,19 @@ using UnityEngine.UI;
 
 public class MB_Zone : MonoBehaviour
 {
-    [SerializeField] private int _id;
+    [SerializeField] private List<int> _id;
     [SerializeField] private int _parselID;
     [SerializeField] private int _myValue;
     [SerializeField] private List<int> _possibleValues;
     [SerializeField] private Button _button;
-    [SerializeField] private MB_Keyboard _keyboard;
+   
+     public List<int> ID { get => _id; }
+     public int MyValue { get => _myValue; }
+     public int MyParselID { get => _parselID; }
+        
+     public List<int> PossibleValues { get => _possibleValues; }
 
-    private int _changedMyValue
+    private int _changedMyValue //when value change trigger RefreshText func. #Property
     {
         get { return _myValue; }
         set
@@ -40,10 +45,14 @@ public class MB_Zone : MonoBehaviour
 
     public void init()
     {
-        WriteParsel();
+        
         
         
     }
+
+    
+
+
     public MB_Zone SelectedZone()
     {
         return this;
@@ -55,52 +64,28 @@ public class MB_Zone : MonoBehaviour
         _changedMyValue = givenvalue;
     }
 
-    public int ReadValue()
-    {
-        return _myValue;
 
-    }
-
-    
-    public void WriteParsel()
+    public void WriteParselID(int parselID)
     {
-        
-        _parselID=GetComponentInParent<MB_Parsel>().ReadParselID();
+
+        _parselID = parselID;
         
     }
 
-    public int GetMyParsel()
+
+    public void RemoveParameterValueFromPossibleValueList(int GivenValue)
     {
-        return _parselID;
-    }
- 
-    
-    public MB_Zone GiveSelectedZoneToKeyboard()
-    {
-        return this;
-
-
-
-    }
-
-    public void RandomlyGivePossibleValue()
-    {
-
        
-        WriteValue(_possibleValues[UnityEngine.Random.Range(0, _possibleValues.Count)]);
-
+            _possibleValues.Remove(GivenValue);
     }
 
-
-    public void RemoveMyValueFromPossibleValues()
+    public void ReadPossiblyValuesToConsole()
     {
-        if (IsThereMyValueInPossibleValue())
-            _possibleValues.Remove(_myValue);
+        foreach (int value in _possibleValues)
+        { Debug.Log(_id + " : " + value); }
     }
+
     #endregion
-
-
-
 
     #region Privates
 
@@ -111,18 +96,7 @@ public class MB_Zone : MonoBehaviour
         //Debug.Log(Newvalue.ToString());
 
     }
-    private bool IsThereMyValueInPossibleValue()
-    {
-        foreach (var value in _possibleValues)
-        {
-            if (value == _myValue)
-                return true;
-
-
-        }
-
-        return false;
-    }
+    
 
     #endregion
 
