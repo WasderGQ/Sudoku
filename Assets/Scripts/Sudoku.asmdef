@@ -1,0 +1,16 @@
+{
+    "name": "Sudoku",
+    "rootNamespace": "WasderGQ.Sudoku",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Android"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
