@@ -6,7 +6,7 @@ namespace MyNamespace
 {
     
 }
-public class KeyboardButton : MonoBehaviour
+public class KeyboardKey : MonoBehaviour
 {
     [SerializeField] private int _myValue;
     public Button Button { get; private set; }
@@ -30,10 +30,21 @@ public class KeyboardButton : MonoBehaviour
             Debug.LogError($"This keyboard button doesnt have button component!!! {e.Message}");
             
         }
-       
+
+        
+        
+        
+        
+        
+        
     }
     
-
+    public void DoClickAnimation()
+    {
+            
+            
+            
+    }
 
 
 

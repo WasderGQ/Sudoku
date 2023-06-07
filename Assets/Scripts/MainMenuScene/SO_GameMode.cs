@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +21,7 @@ public class SO_GameMode : ScriptableObject
         GameStart();
     }
     
-    public void Gamemode9x9() // bu modda çalýþ
+    public void Gamemode9x9() // bu modda ï¿½alï¿½ï¿½
     {
         GameBoardsEnum = GameBoardsEnum.x9;
         //start animastion of loading

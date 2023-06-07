@@ -1,10 +1,6 @@
-using Assets.Scripts.GameScene;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static Assets.Scripts.GameScene.PossibleValues;
+
 
 public class MB_Parsel : MonoBehaviour
 {
@@ -36,7 +32,7 @@ public class MB_Parsel : MonoBehaviour
         }
         
 
-    } //Init Zones Insýde This Parsel
+    } //Init Zones Inside This Parsel
 
     
 
