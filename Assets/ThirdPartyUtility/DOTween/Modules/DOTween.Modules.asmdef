@@ -1,18 +1,12 @@
 {
-    "name": "Sudoku",
-    "rootNamespace": "WasderGQ",
-    "references": [
-        "DOTween.Modules",
-        "Unity.TextMeshPro.Editor",
-        "Unity.TextMeshPro"
-    ],
+    "name": "Modules",
+    "rootNamespace": "DOTween",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
-    "precompiledReferences": [
-        ""
-    ],
+    "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],

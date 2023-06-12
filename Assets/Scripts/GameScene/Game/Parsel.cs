@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using WasderGQ.GameScene.Game;
 
 
 public class Parsel : MonoBehaviour
