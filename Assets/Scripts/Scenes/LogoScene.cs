@@ -2,10 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LogoScene : MonoBehaviour
+namespace WasderGQ.Sudoku.Scenes
 {
-    [SerializeField] private Image _logo = null;
-
+    public class LogoScene : MonoBehaviour
+    {
+        [SerializeField] private Image _logo = null;
+        [SerializeField] private GameObject _LogoScene;
         private void Start()
         {
             StartCoroutine(LogoAnimation());
@@ -31,8 +33,10 @@ public class LogoScene : MonoBehaviour
                 _logo.color = Color.Lerp(transparentColor, logoColor, timer);
                 yield return null;
             }
-            
+            _LogoScene.SetActive(false);
             SceneLoader.Instance.LoadScene(SceneLoader.Scenes.MainMenuScene);
             yield break;
         }
+    }
+
 }

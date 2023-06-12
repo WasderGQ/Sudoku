@@ -1,15 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
-using UnityEngine.UI;
+using WasderGQ.Sudoku.GameScene.InputModuls;
 
-namespace WasderGQ.Sudoku
+namespace WasderGQ.Sudoku.GameScene
 {
     public class PlayerInputManager : MonoBehaviour
     {
-        private LayerMask _interactable;
+        [SerializeField] private LayerMask _interactable;
         [SerializeField] private Keyboard _keyboard;
         private void Update()
         {
@@ -21,22 +19,25 @@ namespace WasderGQ.Sudoku
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Vector3 position = TakeMousePosition();
-                RaycastHit raycastHit = RayThrowTakeRaycastHit2D(position);
+                RaycastHit raycastHit = RayThrowTakeRaycastHit(position);
                 Interact(raycastHit);
             }
             
             
         }
 
-        private RaycastHit RayThrowTakeRaycastHit2D(Vector3 postion)
+        private RaycastHit RayThrowTakeRaycastHit(Vector3 postion)
         {
-            List<RaycastHit> raycastHitList = new List<RaycastHit>();
-            Physics.RaycastAll(postion, Vector3.forward, float.MaxValue, _interactable);
+            Ray ray = new Ray(postion, Vector3.forward);
+            List<RaycastHit> raycastHitList = new List<RaycastHit>(Physics.RaycastAll(ray, float.MaxValue, _interactable));
+            Debug.Log(raycastHitList[0].collider.tag);
             return raycastHitList[0];
+            
         }
 
         private Vector3 TakeMousePosition()
         {
+            Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             return Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
 
@@ -44,10 +45,10 @@ namespace WasderGQ.Sudoku
         {
             if (raycastHit.collider.CompareTag("Zone"))
             {
-                MB_Zone zone = new MB_Zone();
+                Zone zone = new Zone();
                 try
                 {
-                    zone = raycastHit.collider.GetComponent<MB_Zone>();
+                    zone = raycastHit.collider.GetComponent<Zone>();
                 }
                 catch 
                 {

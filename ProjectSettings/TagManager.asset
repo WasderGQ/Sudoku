@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Board_9x9
   - Board6x6
+  - Zone
+  - Parsel
+  - KeyboardKey
+  - Keyboard
   layers:
   - Default
   - TransparentFX
@@ -13,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Interactable
+  - UnInteractable
   - 
   - 
   - 

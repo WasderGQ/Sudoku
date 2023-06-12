@@ -1,16 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Generic;
 using UnityEngine;
 
-public class AppSettings : Singleton<AppSettings>
+namespace WasderGQ.Sudoku.BetweenScene
 {
-    protected override void OnAwake()
+    public class AppSettings : Singleton<AppSettings>
     {
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        Application.targetFrameRate = 60;
-    }
+        protected override void OnAwake()
+        {
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        }
     
 
+    }
 }
+
+
+
