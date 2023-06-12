@@ -1,4 +1,5 @@
 using UnityEngine;
+using WasderGQ.GameScene.Game;
 using WasderGQ.Sudoku.AIs;
 
 namespace WasderGQ.Sudoku.GameScene.Game

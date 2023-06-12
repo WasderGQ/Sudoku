@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using WasderGQ.GameScene.Game;
 using WasderGQ.Sudoku.GameScene.InputModuls;
 
 namespace WasderGQ.Sudoku.GameScene
