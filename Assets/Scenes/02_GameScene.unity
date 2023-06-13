@@ -554,6 +554,10 @@ PrefabInstance:
       propertyPath: _board
       value: 
       objectReference: {fileID: 831182406}
+    - target: {fileID: 6124950453985553065, guid: 029c7b6035634dd4091be53c0a5f6295, type: 3}
+      propertyPath: boardx9
+      value: 
+      objectReference: {fileID: 831182406}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029c7b6035634dd4091be53c0a5f6295, type: 3}
 --- !u!224 &794464348 stripped
@@ -681,7 +685,6 @@ MonoBehaviour:
   - {fileID: 0}
   _currentlySelectedBoard: 0
   _keyboard: {fileID: 2061309319}
-  _canvas: {fileID: 0}
 --- !u!114 &963324724
 MonoBehaviour:
   m_ObjectHideFlags: 0

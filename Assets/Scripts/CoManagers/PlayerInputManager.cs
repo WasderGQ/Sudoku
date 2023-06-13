@@ -23,8 +23,6 @@ namespace WasderGQ.Sudoku.CoManagers
                 RaycastHit raycastHit = RayThrowTakeRaycastHit(position);
                 Interact(raycastHit);
             }
-            
-            
         }
 
         private RaycastHit RayThrowTakeRaycastHit(Vector3 postion)
@@ -33,7 +31,6 @@ namespace WasderGQ.Sudoku.CoManagers
             List<RaycastHit> raycastHitList = new List<RaycastHit>(Physics.RaycastAll(ray, float.MaxValue, _interactable));
             Debug.Log(raycastHitList[0].collider.tag);
             return raycastHitList[0];
-            
         }
 
         private Vector3 TakeMousePosition()

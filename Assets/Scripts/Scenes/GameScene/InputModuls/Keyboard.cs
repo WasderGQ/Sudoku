@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using WasderGQ.Sudoku.Scenes.GameScene.Game;
+using WasderGQ.Sudoku.Scenes.GameScene.Game.Boards;
 
 namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
 {
@@ -10,7 +12,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
         [SerializeField] private List<Button> _myButtons;
         [SerializeField] private KeyboardKey _selectedKeyboardKey;
         [SerializeField] private List<Zone> _selectedZones;
-        [SerializeField] private Board _board;
+        [FormerlySerializedAs("_board")] [SerializeField] private Boardx9 boardx9;
 
 
 

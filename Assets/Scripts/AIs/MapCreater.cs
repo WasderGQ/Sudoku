@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEditor.VersionControl;
 using WasderGQ.Sudoku.Scenes.GameScene.Game;
+using WasderGQ.Sudoku.Scenes.GameScene.Game.Boards;
 
 namespace WasderGQ.Sudoku.AIs
 {
@@ -10,10 +13,10 @@ namespace WasderGQ.Sudoku.AIs
         private List<int> _firstFillParsels;
 
 
-        public MapCreater(Zone[,] zones, Parsel[] parsels)
+        public MapCreater(Parsel[] parsels,Zone[,] zones)
         {
 
-            _processedZones = zones;
+            _processedZones = zones ;
             _processedParsels = parsels;
 
 
@@ -28,8 +31,11 @@ namespace WasderGQ.Sudoku.AIs
         /// Fourth section 3,7
         /// Finally Done
         ///     ----<EndRegion>---
-        
 
+        public async Task<bool> Start()
+        {
+            return true;
+        }
     }
 }
 

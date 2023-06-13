@@ -5,9 +5,9 @@ namespace WasderGQ.Sudoku.Utility
 {
     public class LockVariableOnEditor : PropertyAttribute
     {
-    }
-
-
+    }    
+    #if UNITY_EDITOR
+    
     [CustomPropertyDrawer(typeof(LockVariableOnEditor))]
     public class LockVariable : PropertyDrawer
     {
@@ -18,4 +18,9 @@ namespace WasderGQ.Sudoku.Utility
             GUI.enabled = true;
         }
     }
+    #endif
+    
+
+
+    
 }
