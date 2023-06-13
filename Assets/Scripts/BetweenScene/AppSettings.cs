@@ -1,5 +1,5 @@
-using Generic;
 using UnityEngine;
+using WasderGQ.Sudoku.Generic;
 
 namespace WasderGQ.Sudoku.BetweenScene
 {

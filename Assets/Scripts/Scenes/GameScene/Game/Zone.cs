@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using WasderGQ.Sudoku.Utility;
-using TMPro;
+using WasderGQ.ThirdPartyUtility.DOTween.Modules;
 
-namespace WasderGQ.GameScene.Game
+namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 {
    public class Zone : MonoBehaviour
 {
@@ -40,7 +40,7 @@ namespace WasderGQ.GameScene.Game
     {
         SetPossiblyValuesOnStart();
         _defaultColor = _myImage.color;
-        Debug.Log($"COLOR RGB : {_defaultColor.r} , {_defaultColor.g} , {_defaultColor.b}");
+        //Debug.Log($"COLOR RGB : {_defaultColor.r} , {_defaultColor.g} , {_defaultColor.b}");
         ZoneID = new int[2];
         MyParselID = new int[2];
     }
@@ -73,12 +73,14 @@ namespace WasderGQ.GameScene.Game
     
     public void DoClickAnimation()
     {
-        _myImage.color = Color.green;
+
+        _myImage.DOColor(Color.cyan, 0.5f);
+
     }
 
     public void DoUnSelectedAnimation()
     {
-        _myImage.color = Color.white;
+        _myImage.DOColor(Color.white, 0.5f);
     }
     
     public void WriteValue(int givenvalue)

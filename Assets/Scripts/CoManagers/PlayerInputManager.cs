@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using WasderGQ.GameScene.Game;
-using WasderGQ.Sudoku.GameScene.InputModuls;
+using WasderGQ.Sudoku.Generic;
+using WasderGQ.Sudoku.Scenes.GameScene.Game;
+using WasderGQ.Sudoku.Scenes.GameScene.InputModuls;
 
-namespace WasderGQ.Sudoku.GameScene
+namespace WasderGQ.Sudoku.CoManagers
 {
-    public class PlayerInputManager : MonoBehaviour
+    public class PlayerInputManager : Singleton<PlayerInputManager>
     {
         [SerializeField] private LayerMask _interactable;
         [SerializeField] private Keyboard _keyboard;

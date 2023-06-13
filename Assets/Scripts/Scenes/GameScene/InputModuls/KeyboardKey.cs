@@ -2,8 +2,9 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using WasderGQ.ThirdPartyUtility.DOTween.Modules;
 
-namespace WasderGQ.Sudoku.GameScene.InputModuls
+namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
 {
     public class KeyboardKey : MonoBehaviour
     {
@@ -43,9 +44,9 @@ namespace WasderGQ.Sudoku.GameScene.InputModuls
 
         public async void DoClickAnimation()
         {
-            _myImage.color = Color.gray;
-            Task.Delay(1000);
-            _myImage.color = Color.white;
+            _myImage.DOColor(Color.gray, 0.1f);
+            await Task.Delay(10);
+            _myImage.DOColor(Color.white, 0.1f);
         }
     }
 }

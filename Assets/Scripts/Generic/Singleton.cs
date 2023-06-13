@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Generic
+namespace WasderGQ.Sudoku.Generic
 {
   public abstract class Singleton<T> : Singleton where T : MonoBehaviour
     {
