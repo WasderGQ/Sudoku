@@ -1,8 +1,7 @@
 using UnityEngine;
-using WasderGQ.GameScene.Game;
 using WasderGQ.Sudoku.AIs;
 
-namespace WasderGQ.Sudoku.GameScene.Game
+namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 {
     public class Board : MonoBehaviour
 {

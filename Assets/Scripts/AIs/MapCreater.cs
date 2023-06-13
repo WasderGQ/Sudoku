@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WasderGQ.GameScene.Game;
+using WasderGQ.Sudoku.Scenes.GameScene.Game;
 
 namespace WasderGQ.Sudoku.AIs
 {

@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WasderGQ.Sudoku.AIs;
-using WasderGQ.Sudoku.GameScene.Game;
-using WasderGQ.Sudoku.GameScene.InputModuls;
-using WasderGQ.Sudoku.MainMenuScene;
+using WasderGQ.Sudoku.Scenes.GameScene.Game;
+using WasderGQ.Sudoku.Scenes.GameScene.InputModuls;
+using WasderGQ.Sudoku.Scenes.MainMenuScene;
 
-namespace WasderGQ.Sudoku.GameScene
+namespace WasderGQ.Sudoku.Scenes.GameScene
 {
-    public class GameSceneManager : MonoBehaviour
+    public class GameScene : MonoBehaviour
     {
         [SerializeField] private SO_GameMode _gameMode;
         [SerializeField] private List<Board> _boardList;
@@ -50,7 +50,7 @@ namespace WasderGQ.Sudoku.GameScene
 
         private void GetCurrentBoard()
         {
-            _currentlySelectedBoard = (int)_gameMode.GameBoardsEnum;
+            _currentlySelectedBoard = (int)_gameMode.GameBoards;
         }
 
         void GameBoardOpener()

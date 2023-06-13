@@ -1,6 +1,6 @@
 {
-    "name": "Modules",
-    "rootNamespace": "DOTween",
+    "name": "DOTween.Modules",
+    "rootNamespace": "WasderGQ",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

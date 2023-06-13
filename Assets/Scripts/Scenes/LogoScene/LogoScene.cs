@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
-namespace WasderGQ.Sudoku.Scenes
+using WasderGQ.Sudoku.SceneManagement;
+using WasderGQ.Sudoku.Enums;
+namespace WasderGQ.Sudoku.Scenes.LogoScene
 {
     public class LogoScene : MonoBehaviour
     {
@@ -34,7 +35,7 @@ namespace WasderGQ.Sudoku.Scenes
                 yield return null;
             }
             _LogoScene.SetActive(false);
-            SceneLoader.Instance.LoadScene(SceneLoader.Scenes.MainMenuScene);
+            SceneLoader.Instance.LoadScene(Enums.Scenes.MainMenuScene);
             yield break;
         }
     }
