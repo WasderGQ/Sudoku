@@ -16,6 +16,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene
         [SerializeField] private int _currentlySelectedBoard;
         [SerializeField] private Keyboard _keyboard;
 
+        [SerializeField] private List<int> Try; 
 
         private void Start()
         {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using WasderGQ.Sudoku.AIs;
 using WasderGQ.Sudoku.Enums;
 using WasderGQ.Sudoku.Scenes.MainMenuScene;
@@ -7,11 +8,13 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 {
     public abstract class Board : MonoBehaviour
     {
-        protected MapCreater _mapCreater;
+        
         public readonly GameBoards GameBoards;
-        public Parsel[] Parsels { get; }
-        public Zone[,] Zones { get; }
+        [SerializeField] protected MapCreater _mapCreater;
+        public virtual Parsel[] Parsels { get; }
+        public virtual Zone[,] Zones { get; }
 
+       
 
         public virtual void InIt()
         {
@@ -22,22 +25,16 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         {
             
         }
-
+        protected virtual void SynchronizeVariableWithBaseClass()
+        {
+            
+        }
         protected virtual void AddMapCreater()
         {
-            try 
-            {
-                _mapCreater = new MapCreater(Parsels,Zones);
-            }
-        
-            catch
-            {
-                Debug.Log("Map Creater can't create on Board class !!!!");
-            }
             
         }
         
-        protected async virtual void StartMapCreater()
+        protected virtual async void StartMapCreater()
         {
            await _mapCreater.Start();
         }
@@ -45,6 +42,22 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         protected virtual void ConvertParselZonesToZones()
         {
             
+        }
+        protected virtual void SetZonesIDs(Zone[,] zones)
+        {
+            int counterI = 0;
+            for (int i = 0; i < zones.GetLength(0); i++)
+            {
+                int counterJ = 0;
+                for (int j = 0; j < zones.GetLength(1); j++)
+                {
+                    zones[i,j].SetZoneID(new []{counterI,counterJ});
+                    counterJ++;
+                }
+
+                counterI++;
+            }
+        
         }
         
     }

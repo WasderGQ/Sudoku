@@ -1,24 +1,21 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using WasderGQ.Sudoku.Utility;
 using WasderGQ.ThirdPartyUtility.DOTween.Modules;
 
 namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 {
-   public class Zone : MonoBehaviour
-{
-     [SerializeField] private List<int> _possibleValues;
-     [SerializeField] private Image _myImage;
-     [SerializeField] private Color _defaultColor;
-     [SerializeField] private TextMeshProUGUI _text;
+   public class Zone : MonoBehaviour ,IComparableObj
+   {
+     
+     [SerializeField] private SpriteRenderer _myImage;
+     [SerializeField] private TextMeshPro _text;
      [field:SerializeField,LockVariableOnEditor] public int[] ZoneID { get; private set; }
-     [field:SerializeField,LockVariableOnEditor] public int[] MyParselID { get; private set;}
+     [field:SerializeField,LockVariableOnEditor] public int[] ParselID { get; private set;}
      [field:SerializeField,LockVariableOnEditor] public int MyValue { get; private set; }
-     
-     
-     
+     [field:SerializeField,LockVariableOnEditor] public List<int> PossibleValueList { get; private set; }
+     public int ComparableValue { get => PossibleValueList.Count; }
      
      private int _setMyValue //when value change trigger RefreshText func. #Property
      {
@@ -39,15 +36,13 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
     public void init()
     {
         SetPossiblyValuesOnStart();
-        _defaultColor = _myImage.color;
-        //Debug.Log($"COLOR RGB : {_defaultColor.r} , {_defaultColor.g} , {_defaultColor.b}");
         ZoneID = new int[2];
-        MyParselID = new int[2];
+        ParselID = new int[2];
     }
 
     private void SetPossiblyValuesOnStart()
     {
-        _possibleValues = new List<int>()
+        PossibleValueList = new List<int>()
         {
             1,2,3,4,5,6,7,8,9
         };
@@ -55,9 +50,9 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 
     public void RemoveValueFromPossibleValues(int value)
     {
-        if (_possibleValues.Contains(value))
+        if (PossibleValueList.Contains(value))
         {
-            _possibleValues.Remove(value);
+            PossibleValueList.Remove(value);
         }
         else
         {
@@ -65,9 +60,9 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
         }
     }
 
-    public List<int> GetPossibleValueList()
+    public int GetValueOnPossibleValueList(int valueIndex)
     {
-        return _possibleValues;
+        return PossibleValueList[valueIndex];
     }
     
     
@@ -82,7 +77,16 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
     {
         _myImage.DOColor(Color.white, 0.5f);
     }
-    
+
+    public bool ComparePossibleValue(int value)
+    {
+        if (PossibleValueList.Contains(value))
+        {
+            return true;
+        }
+
+        return false;
+    }
     public void WriteValue(int givenvalue)
     {
         _setMyValue = givenvalue;
@@ -90,15 +94,21 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 
     public void SetParselID(int[] parselID)
     {
-        
-
+        ParselID = parselID;
     }
 
+    public void SetZoneID(int[] zoneID)
+    {
+        ZoneID = zoneID;
+    }
+    
     private void RefreshText(int value)
     {
         _text.text = value.ToString();
     }
 
-} 
+
+    
+   } 
 }
 

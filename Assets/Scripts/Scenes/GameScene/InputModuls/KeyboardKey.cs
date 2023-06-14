@@ -9,7 +9,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
     public class KeyboardKey : MonoBehaviour
     {
         [SerializeField] private int _myValue;
-        [SerializeField] private Image _myImage;
+        [SerializeField] private SpriteRenderer _myImage;
         public Button Button { get; private set; }
 
         public int MyValue

@@ -9,10 +9,9 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
 {
     public class Keyboard : MonoBehaviour 
     {
-        [SerializeField] private List<Button> _myButtons;
-        [SerializeField] private KeyboardKey _selectedKeyboardKey;
+        
         [SerializeField] private List<Zone> _selectedZones;
-        [FormerlySerializedAs("_board")] [SerializeField] private Boardx9 boardx9;
+        [SerializeField] private Boardx9 boardx9;
 
 
 
