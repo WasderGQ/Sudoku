@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WasderGQ.Sudoku.Utility
+namespace WasderGQ.Utility.List_Array_Etc
 {
-    public static class QuickSort
+    public static class Array
     {
         
         public static void QuickSortArray<T1>(this T1[] array) where T1 : IComparableObj

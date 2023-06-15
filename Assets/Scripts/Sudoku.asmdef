@@ -5,7 +5,7 @@
         "Unity.TextMeshPro.Editor",
         "Unity.TextMeshPro",
         "DOTween.Modules",
-        "WasderGQ.Utility"
+        "Utility"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

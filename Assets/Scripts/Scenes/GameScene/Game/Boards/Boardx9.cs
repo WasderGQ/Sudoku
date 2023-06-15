@@ -18,7 +18,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
     public override void InIt()
     {
         ConvertParselZonesToZones();
-        base.SetZonesIDs(_zones);
+        base.SetZonesID(_zones);
         ParselsInIt();
         AddMapCreater(); 
         SynchronizeVariableWithBaseClass();

@@ -1,8 +1,11 @@
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WasderGQ.Sudoku.AIs;
 using WasderGQ.Sudoku.Enums;
 using WasderGQ.Sudoku.Scenes.MainMenuScene;
+using WasderGQ.Utility.List_Array_Etc;
 
 namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 {
@@ -43,8 +46,14 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         {
             
         }
-        protected virtual void SetZonesIDs(Zone[,] zones)
+        protected virtual void SetZonesID(Zone[,] zones)
         {
+            foreach (var zone in zones)
+            {
+                int[] indexs = zones.FindIndex(zone); 
+                zone.SetZoneID(indexs);
+            }
+            /*
             int counterI = 0;
             for (int i = 0; i < zones.GetLength(0); i++)
             {
@@ -56,7 +65,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
                 }
 
                 counterI++;
-            }
+            }*/
         
         }
         

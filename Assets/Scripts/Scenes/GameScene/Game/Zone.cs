@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using WasderGQ.Sudoku.Utility;
 using WasderGQ.ThirdPartyUtility.DOTween.Modules;
+using WasderGQ.Utility.List_Array_Etc;
 
 namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 {
