@@ -2,45 +2,24 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using WasderGQ.Sudoku.AIs;
 using WasderGQ.Sudoku.Enums;
+using WasderGQ.Utility.UnityEditor;
 
 namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 {
     public class Boardx9 : Board
 {
     [SerializeField] public readonly GameBoards GameBoards = GameBoards.x9;
-    [SerializeField] protected Parsel[] _parselsList;
-    [SerializeField] protected Zone[,] _zones;
-    [SerializeField] protected MapCreater _mapCreater;
-    
-    public override Parsel[] Parsels { get => _parselsList; }
-    public override Zone[,] Zones { get => _zones; }
     
     public override void InIt()
     {
         ConvertParselZonesToZones();
-        base.SetZonesID(_zones);
-        ParselsInIt();
-        AddMapCreater(); 
-        SynchronizeVariableWithBaseClass();
+        base.ParselsInIt();
+        base.SetZonesID();
+        base.AddMapCreater();
         base.StartMapCreater();
         
     }
 
-    
-    
-    protected override void SynchronizeVariableWithBaseClass()
-    {
-        base._mapCreater = _mapCreater;
-    }
-    protected override void ParselsInIt()
-    {
-        foreach (var parsel in _parselsList)
-        {
-            parsel.init();
-
-        }
-    }
-    
     protected override void ConvertParselZonesToZones()
     {
         try
@@ -67,19 +46,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 
         }
     }
-
-    protected override void AddMapCreater()
-    {
-        try 
-        {
-            _mapCreater = new MapCreater(Parsels,Zones);
-        }
-        
-        catch
-        {
-            Debug.Log("Map Creater can't create on Boardx9 class !!!!");
-        }
-    }
+    
 
     /// <Important>
     /// board hangi zone secili oldupunu bilmeli ve keyboarddan bilgiyi alip board�n kendisi bu bilgiyi yazmasi gerekli.

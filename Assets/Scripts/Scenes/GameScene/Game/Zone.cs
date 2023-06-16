@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using WasderGQ.Sudoku.Utility;
 using WasderGQ.ThirdPartyUtility.DOTween.Modules;
 using WasderGQ.Utility.List_Array_Etc;
+using WasderGQ.Utility.UnityEditor;
 
 namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 {
@@ -12,10 +12,10 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
      
      [SerializeField] private SpriteRenderer _myImage;
      [SerializeField] private TextMeshPro _text;
-     [field:SerializeField,LockVariableOnEditor] public int[] ZoneID { get; private set; }
-     [field:SerializeField,LockVariableOnEditor] public int[] ParselID { get; private set;}
-     [field:SerializeField,LockVariableOnEditor] public int MyValue { get; private set; }
-     [field:SerializeField,LockVariableOnEditor] public List<int> PossibleValueList { get; private set; }
+     [field:SerializeField,DisableValueChange] public int[] ZoneID { get; private set; }
+     [field:SerializeField,DisableValueChange] public int[] ParselID { get; private set;}
+     [field:SerializeField,DisableValueChange] public int MyValue { get; private set; }
+     [field:SerializeField,DisableValueChange] public List<int> PossibleValueList { get; private set; }
      public int ComparableValue { get => PossibleValueList.Count; }
      
      private int _setMyValue //when value change trigger RefreshText func. #Property

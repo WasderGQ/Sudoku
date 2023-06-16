@@ -11,14 +11,12 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 {
     public abstract class Board : MonoBehaviour
     {
-        
-        public readonly GameBoards GameBoards;
         [SerializeField] protected MapCreater _mapCreater;
-        public virtual Parsel[] Parsels { get; }
-        public virtual Zone[,] Zones { get; }
-
-       
-
+        [SerializeField] protected Parsel[] _parselsList;
+        [SerializeField] protected Zone[,] _zones;
+        public Parsel[] Parsels { get => _parselsList; }
+        public Zone[,] Zones { get => _zones; }
+        
         public virtual void InIt()
         {
             
@@ -26,15 +24,24 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 
         protected virtual void ParselsInIt()
         {
-            
+            foreach (var parsel in _parselsList)
+            {
+                parsel.init();
+            } 
         }
-        protected virtual void SynchronizeVariableWithBaseClass()
-        {
-            
-        }
+       
         protected virtual void AddMapCreater()
         {
-            
+            try 
+            {
+                _mapCreater = new MapCreater(Parsels,Zones);
+            }
+        
+            catch
+            {
+                Debug.Log("Map Creater can't create on Boardx9 class !!!!");
+            }
+        
         }
         
         protected virtual async void StartMapCreater()
@@ -46,27 +53,14 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         {
             
         }
-        protected virtual void SetZonesID(Zone[,] zones)
+        
+        protected void SetZonesID()
         {
-            foreach (var zone in zones)
+            foreach (var zone in _zones)
             {
-                int[] indexs = zones.FindIndex(zone); 
+                int[] indexs = _zones.FindIndex(zone); 
                 zone.SetZoneID(indexs);
             }
-            /*
-            int counterI = 0;
-            for (int i = 0; i < zones.GetLength(0); i++)
-            {
-                int counterJ = 0;
-                for (int j = 0; j < zones.GetLength(1); j++)
-                {
-                    zones[i,j].SetZoneID(new []{counterI,counterJ});
-                    counterJ++;
-                }
-
-                counterI++;
-            }*/
-        
         }
         
     }
