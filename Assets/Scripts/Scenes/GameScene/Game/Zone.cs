@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using WasderGQ.ThirdPartyUtility.DOTween.Modules;
-using WasderGQ.Utility.List_Array_Etc;
 using WasderGQ.Utility.UnityEditor;
 
 namespace WasderGQ.Sudoku.Scenes.GameScene.Game
@@ -85,7 +83,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
         {
             if (isHint)
             {
-                if (_trueValue == value)
+                if (_trueValue == value && value != 0)
                 {
                     Debug.Log("True triggered");
                     DoTrueAnimation();
