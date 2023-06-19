@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WasderGQ.ThirdPartyUtility.DOTween.Modules;
 using WasderGQ.Utility.UnityEditor;
 
@@ -9,12 +10,15 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 {
     public class Zone : MonoBehaviour
     {
-        [SerializeField] private int _trueValue;
+        
         [SerializeField] private SpriteRenderer _myImage;
         [SerializeField] private TextMeshPro _text;
         [SerializeField] private Tween _currentAnimation;
+        [SerializeField] private bool isChangable;
+        
+        [field: SerializeField,DisableValueChange] public int TrueValue { get; private set; }
         [field: SerializeField, DisableValueChange] public int[] ZoneID { get; private set; }
-
+        
         [field: SerializeField, DisableValueChange] public int[] ParselID { get; private set; }
 
         [field: SerializeField, DisableValueChange] public int MyValue { get; private set; }
@@ -36,10 +40,12 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
                 if (MyValue == value) return;
                 if (MyValue != value)
                 {
-                    RefreshText(value);
-                    CheckIsValueTrue(value,IsHint);
-                    MyValue = value;
-
+                    if (isChangable)
+                    {
+                        RefreshText(value);
+                        CheckIsValueTrue(value,IsHint);
+                        MyValue = value; 
+                    }
                 }
 
             }
@@ -83,7 +89,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
         {
             if (isHint)
             {
-                if (_trueValue == value && value != 0)
+                if (TrueValue == value && value != 0)
                 {
                     Debug.Log("True triggered");
                     DoTrueAnimation();
@@ -102,9 +108,14 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
             ParselID = new int[2];
             SetMyValueDefault();
             SetIsHintDefault();
-
+            SetChangable(true);
         }
 
+        public void SetChangable(bool onOff)
+        {
+            isChangable = onOff;
+
+        }
         private void DoTrueAnimation()
         {
             _currentAnimation.Kill();
@@ -129,7 +140,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 
         public void SetTrueValue(int value)
         {
-            _trueValue = value;
+            TrueValue = value;
         }
 
         public void SetPossiblyValues()
@@ -166,17 +177,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
             _currentAnimation.Kill();
             _currentAnimation = _myImage.DOColor(Color.white, 1f);
         }
-
-        public bool ComparePossibleValue(int value)
-        {
-            if (PossibleValueList.Contains(value))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
+        
         public void WriteValue(int givenvalue)
         {
             _setMyValue = givenvalue;

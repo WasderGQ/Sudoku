@@ -936,6 +936,7 @@ MonoBehaviour:
   - {fileID: 1458522594}
   - {fileID: 1443423306}
   - {fileID: 1337497241}
+  _sealedZones: []
 --- !u!224 &609477720
 RectTransform:
   m_ObjectHideFlags: 0
