@@ -4,13 +4,15 @@ using WasderGQ.Sudoku.Utility;
 
 namespace WasderGQ.Utility.UnityEditor
 {
-#if UNITY_EDITOR
+
     public class DisableValueChange : PropertyAttribute
     {
     }
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(DisableValueChange))]
     public class DisableValueChangeOnTheEditor : PropertyDrawer
     {
+
         private bool valueChanged = false;
 
         public override void OnGUI(Rect location, SerializedProperty property, GUIContent line)
@@ -51,8 +53,9 @@ namespace WasderGQ.Utility.UnityEditor
 
             return false;
         }
+
     }
     
-    
 #endif
+
 }

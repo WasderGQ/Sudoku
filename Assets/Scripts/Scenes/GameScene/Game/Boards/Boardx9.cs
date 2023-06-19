@@ -18,6 +18,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         base.AddMapCreater();
         base.StartMapCreater();
         base.MakeZonesDefault();
+        base.SelectZoneFromBoard(0,17);
     }
 
     protected override void ConvertParselZonesToZones()

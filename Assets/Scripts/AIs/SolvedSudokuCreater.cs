@@ -1,15 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using WasderGQ.Sudoku.Scenes.GameScene.Game;
-using WasderGQ.Sudoku.Scenes.GameScene.Game.Boards;
-using WasderGQ.Sudoku.Utility;
-using WasderGQ.Utility.List_Array_Etc;
 using Random = UnityEngine.Random;
-using Task = System.Threading.Tasks.Task;
+
 
 namespace WasderGQ.Sudoku.AIs
 {
