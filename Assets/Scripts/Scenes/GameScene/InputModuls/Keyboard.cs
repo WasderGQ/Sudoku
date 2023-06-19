@@ -9,10 +9,9 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
 {
     public class Keyboard : MonoBehaviour 
     {
-        [SerializeField] private List<Button> _myButtons;
-        [SerializeField] private KeyboardKey _selectedKeyboardKey;
+        
         [SerializeField] private List<Zone> _selectedZones;
-        [FormerlySerializedAs("_board")] [SerializeField] private Boardx9 boardx9;
+        [SerializeField] private Boardx9 boardx9;
 
 
 
@@ -34,7 +33,10 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
                 foreach (var zone in _selectedZones)
                 {
                     zone.WriteValue(key.MyValue);
-                    zone.DoUnSelectedAnimation();
+                    if (zone.IsHint == false)
+                    {
+                        zone.DoToDefaultZoneAnimation();
+                    }
                 }
                 _selectedZones.Clear();
             }

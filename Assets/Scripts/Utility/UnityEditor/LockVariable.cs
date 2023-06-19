@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace WasderGQ.Sudoku.Utility
 {
+#if UNITY_EDITOR
     public class LockVariableOnEditor : PropertyAttribute
     {
     }    
-    #if UNITY_EDITOR
+   
     
     [CustomPropertyDrawer(typeof(LockVariableOnEditor))]
     public class LockVariable : PropertyDrawer
@@ -18,7 +19,7 @@ namespace WasderGQ.Sudoku.Utility
             GUI.enabled = true;
         }
     }
-    #endif
+#endif
     
 
 

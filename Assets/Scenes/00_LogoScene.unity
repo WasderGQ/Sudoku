@@ -369,7 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 936034081}
   - component: {fileID: 936034080}
-  - component: {fileID: 936034083}
+  - component: {fileID: 936034082}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -405,7 +405,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &936034083
+--- !u!114 &936034082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 936034078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca68a0336f4a38148962de95754e6176, type: 3}
+  m_Script: {fileID: 11500000, guid: f8e4dacb4a53a9c42954d17e0339ec0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1

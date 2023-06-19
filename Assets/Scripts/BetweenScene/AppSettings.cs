@@ -3,14 +3,19 @@ using WasderGQ.Sudoku.Generic;
 
 namespace WasderGQ.Sudoku.BetweenScene
 {
-    public class AppSettings : Singleton<AppSettings>
+    public class AppSettings 
     {
-        protected override void OnAwake()
+        public void InIt()
+        {
+            OnAwakeSetScreenSettings();
+            
+        }
+
+        private void OnAwakeSetScreenSettings()
         {
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             Application.targetFrameRate = Screen.currentResolution.refreshRate;
         }
-    
 
     }
 }
