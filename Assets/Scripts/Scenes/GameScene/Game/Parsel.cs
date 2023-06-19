@@ -39,7 +39,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
             }
         } //Parsel giving ID to zone
 
-        public void ParselRemovePossibleValueOnZone(int value)
+        public void ParselRemovePossibleValueListOnZone(int value)
         {
             foreach (var zone in ZonesInParsel)
             {

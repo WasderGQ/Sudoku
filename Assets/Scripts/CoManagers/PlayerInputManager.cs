@@ -8,11 +8,12 @@ using WasderGQ.Utility.DefaultMonoBehaviorObject;
 
 namespace WasderGQ.Sudoku.CoManagers
 {
-    public class PlayerInputManager : Singleton<PlayerInputManager>
+    public class PlayerInputManager : MonoBehaviour
     {
         [SerializeField] private LayerMask _interactable;
         [SerializeField] private Keyboard _keyboard;
         [SerializeField]private Zone _preFabZone;
+        [SerializeField]private KeyboardKey _preFabKey;
         private void Update()
         {
             MouseClick();
@@ -67,7 +68,7 @@ namespace WasderGQ.Sudoku.CoManagers
 
             if (raycastHit.collider.CompareTag("KeyboardKey"))
             {
-                KeyboardKey key = new KeyboardKey();
+                KeyboardKey key = _preFabKey;
                 try
                 {
                     key = raycastHit.collider.GetComponent<KeyboardKey>();

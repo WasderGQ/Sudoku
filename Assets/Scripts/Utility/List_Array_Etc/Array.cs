@@ -1,44 +1,67 @@
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using UnityEngine;
 
 namespace WasderGQ.Utility.List_Array_Etc
 {
     public static class Array
     {
-        
-        public static void QuickSortArray<T1>(this T1[] array) where T1 : IComparableObj
+        /// <summary>
+        /// QuickSort lineuper
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
+        public static void QuickSortArray(this int[] arr, int low, int high)
         {
-            foreach (var element in array)
+            if (low < high)
             {
-                Partion<T1>(element,array);
+                int partitionIndex = Partition(arr, low, high);
+            
+                QuickSortArray(arr, low, partitionIndex - 1);
+                QuickSortArray(arr, partitionIndex + 1, high);
             }
         }
 
-        private static void Partion<T1>(T1 element,T1[] array) where T1 : IComparableObj
+        private static int Partition(int[] arr, int low, int high) 
         {
-            int count = 0;
-            List<T1> tempList = array.ToList();
-            tempList.Remove(element);
-            for (int i = 0; i < tempList.Count-1; i++)
+            int pivot = arr[high];
+            int i = low - 1;
+        
+            for (int j = low; j < high; j++)
             {
-                if (element.ComparableValue > tempList[i].ComparableValue)
+                if (arr[j] < pivot)
                 {
-                    count++;
+                    i++;
+                    Swap(arr, i, j);
                 }
             }
-            Swap(count, element, array);
+        
+            Swap(arr, i + 1, high);
+        
+            return i + 1;
         }
         
-        private static void Swap<T1>(int changeIndex,T1 element,T1[] array)
+        private static void Swap(int[] arr, int i, int j)
         {
-            T1 temp = array[changeIndex];
-            array[changeIndex] = element;
-            array[array.Length - 1] = temp;
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
+
+        static public void ArrayDebugger(int[] arr)
+        {
+            foreach (var element in arr)
+            {
+                Debug.Log(element);
+            }
+        }
+
+
+
+
     }
-    public interface IComparableObj
-    {
-        public int ComparableValue { get; }
-            
-    }
+    
+    
 }

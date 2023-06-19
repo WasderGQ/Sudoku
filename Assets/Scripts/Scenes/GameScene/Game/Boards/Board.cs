@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WasderGQ.Sudoku.AIs;
@@ -11,10 +12,11 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 {
     public abstract class Board : MonoBehaviour
     {
-        [SerializeField] protected MapCreater _mapCreater;
-        [SerializeField] protected Parsel[] _parselsList;
+        [SerializeField] protected SolvedSudokuCreater SolvedSudokuCreater;
+        [SerializeField] protected Parsel[] _parsels;
         [SerializeField] protected Zone[,] _zones;
-        public Parsel[] Parsels { get => _parselsList; }
+        
+        public Parsel[] Parsels { get => _parsels; }
         public Zone[,] Zones { get => _zones; }
         
         public virtual void InIt()
@@ -24,7 +26,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
 
         protected virtual void ParselsInIt()
         {
-            foreach (var parsel in _parselsList)
+            foreach (var parsel in _parsels)
             {
                 parsel.init();
             } 
@@ -34,7 +36,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         {
             try 
             {
-                _mapCreater = new MapCreater(Parsels,Zones);
+                SolvedSudokuCreater = new SolvedSudokuCreater(Parsels,Zones);
             }
         
             catch
@@ -46,7 +48,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         
         protected virtual async void StartMapCreater()
         {
-           await _mapCreater.Start();
+            bool done = await SolvedSudokuCreater.Start();
         }
 
         protected virtual void ConvertParselZonesToZones()
@@ -54,7 +56,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
             
         }
         
-        protected void SetZonesID()
+        protected virtual void SetZonesID()
         {
             foreach (var zone in _zones)
             {
@@ -62,6 +64,16 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
                 zone.SetZoneID(indexs);
             }
         }
-        
+        protected virtual void MakeZonesDefault()
+        {
+            foreach (var parsel in _parsels)
+            {
+                foreach (var zone in parsel.ZonesInParsel)
+                {
+                    zone.SetTrueValue(zone.MyValue);
+                    zone.SetMyValueDefault();
+                }
+            }
+        }
     }
 }

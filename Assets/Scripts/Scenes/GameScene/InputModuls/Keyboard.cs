@@ -33,7 +33,10 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
                 foreach (var zone in _selectedZones)
                 {
                     zone.WriteValue(key.MyValue);
-                    zone.DoUnSelectedAnimation();
+                    if (zone.IsHint == false)
+                    {
+                        zone.DoToDefaultZoneAnimation();
+                    }
                 }
                 _selectedZones.Clear();
             }
