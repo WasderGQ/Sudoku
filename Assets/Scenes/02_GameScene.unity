@@ -937,6 +937,9 @@ MonoBehaviour:
   - {fileID: 1443423306}
   - {fileID: 1337497241}
   _sealedZones: []
+  UnInteractable:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!224 &609477720
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1357,6 +1360,7 @@ MonoBehaviour:
   _keyboard: {fileID: 1799833736}
   WaitScenePrefab: {fileID: 2717540860692109012, guid: 1354c1947328769438fc075984fbc456, type: 3}
   WaitScene: {fileID: 0}
+  CelebrationScene: {fileID: 0}
 --- !u!114 &963324724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2045,7 +2049,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -2684,6 +2688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectedZones: []
   boardx9: {fileID: 609477719}
+  _sudoku: {fileID: 0}
 --- !u!224 &1799833737
 RectTransform:
   m_ObjectHideFlags: 0

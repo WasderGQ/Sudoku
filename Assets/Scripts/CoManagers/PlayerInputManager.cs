@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using WasderGQ.Sudoku.Enums;
 using WasderGQ.Sudoku.Generic;
+using WasderGQ.Sudoku.SceneManagement;
 using WasderGQ.Sudoku.Scenes.GameScene.Game;
 using WasderGQ.Sudoku.Scenes.GameScene.InputModuls;
 using WasderGQ.Sudoku.Utility;
@@ -53,32 +56,55 @@ namespace WasderGQ.Sudoku.CoManagers
         {
             if (raycastHit.collider.CompareTag("Zone"))
             {
-                Zone zone = _preFabZone;
+                 
                 try
                 {
-                    zone = raycastHit.collider.GetComponent<Zone>();
+                    Zone zone = raycastHit.collider.GetComponent<Zone>();
+                    if (zone.Selected)
+                    {
+                        zone.DoUnSelected(zone.MyValue);
+                        _keyboard.RemoveZoneToList(zone);
+                    }
+                    else
+                    {
+                        zone.DoSelected();
+                        _keyboard.SaveZoneToList(zone);
+                    }
                 }
                 catch 
                 {
                     Debug.LogError("There is no !! MB_Zone !! script on the reached GameObject.");
                 }
-                zone.DoClickAnimation();
-                _keyboard.SaveZoneToList(zone);
+
+                
+                
             }
 
             if (raycastHit.collider.CompareTag("KeyboardKey"))
             {
-                KeyboardKey key = _preFabKey;
                 try
                 {
-                    key = raycastHit.collider.GetComponent<KeyboardKey>();
+                    KeyboardKey key = raycastHit.collider.GetComponent<KeyboardKey>();
+                    key.DoClickAnimation();
+                    _keyboard.FillZoneWithValue(key);
                 }
                 catch 
                 {
                     Debug.LogError("There is no !! KeyboardKey !! script on the reached GameObject.");
                 }
-                key.DoClickAnimation();
-                _keyboard.FillZoneWithValue(key);
+                
+            }
+            if (raycastHit.collider.CompareTag("WinBackground"))
+            {
+                try
+                {
+                    SceneLoader.Instance.LoadScene(EnumScenes.MainMenuScene);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Parent not contain WinScene Component");
+                }
+                
             }
             
         }

@@ -21,6 +21,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         base.SelectZoneFromBoard(0,17);
     }
 
+    
     protected override void ConvertParselZonesToZones()
     {
         try

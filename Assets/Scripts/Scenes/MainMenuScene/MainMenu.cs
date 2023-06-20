@@ -37,22 +37,22 @@ namespace WasderGQ.Sudoku.Scenes.MainMenuScene
         private void StartGameMode3x3()
         {
             GameTypes.SetGamemode3x3();
-            SceneLoader.Instance.LoadScene(Enums.Scenes.GameSceneSudoku);
+            SceneLoader.Instance.LoadScene(Enums.EnumScenes.GameSceneSudoku);
         }
         private void StartGameMode6x6()
         {
             GameTypes.SetGamemode6x6();
-            SceneLoader.Instance.LoadScene(Enums.Scenes.GameSceneSudoku);
+            SceneLoader.Instance.LoadScene(Enums.EnumScenes.GameSceneSudoku);
         }
         private void StartGameMode9x9()
         {
             GameTypes.SetGamemode9x9();
-            SceneLoader.Instance.LoadScene(Enums.Scenes.GameSceneSudoku);
+            SceneLoader.Instance.LoadScene(Enums.EnumScenes.GameSceneSudoku);
         }
         private void StartGameMode12x12()
         {
             GameTypes.SetGamemode12x12();
-            SceneLoader.Instance.LoadScene(Enums.Scenes.GameSceneSudoku);
+            SceneLoader.Instance.LoadScene(Enums.EnumScenes.GameSceneSudoku);
         }
     
 

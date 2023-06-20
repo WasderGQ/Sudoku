@@ -1,6 +1,6 @@
 namespace WasderGQ.Sudoku.Enums
 { 
-    public enum Scenes
+    public enum EnumScenes
     {
         LogoScene = 0,
         MainMenuScene = 1,

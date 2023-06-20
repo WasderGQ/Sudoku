@@ -14,7 +14,6 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
         [SerializeField] private SpriteRenderer _myImage;
         [SerializeField] private TextMeshPro _text;
         [SerializeField] private Tween _currentAnimation;
-        [SerializeField] private bool isChangable;
         
         [field: SerializeField,DisableValueChange] public int TrueValue { get; private set; }
         [field: SerializeField, DisableValueChange] public int[] ZoneID { get; private set; }
@@ -27,6 +26,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
 
         [field: SerializeField, DisableValueChange] public List<int> PossibleValueList { get; private set; }
 
+        [field: SerializeField, DisableValueChange] public bool Selected { get; private set; }
         public int ComparableValue
         {
             get => PossibleValueList.Count;
@@ -40,10 +40,9 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
                 if (MyValue == value) return;
                 if (MyValue != value)
                 {
-                    if (isChangable)
+                    if (LayerMask.NameToLayer("Interactable") == this.gameObject.layer)
                     {
                         RefreshText(value);
-                        CheckIsValueTrue(value,IsHint);
                         MyValue = value; 
                     }
                 }
@@ -59,14 +58,14 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
                 if (IsHint == value) return;
                 if (IsHint != value)
                 {
-                    if (value == false)
+                    if (value == false && Selected == false)
                     {
                         DoToDefaultZoneAnimation();
                     }
                     else
                     {
                         if(MyValue != 0)
-                        CheckIsValueTrue(MyValue,value);
+                        ShowTrueFalseZones(MyValue);
                     }
                     IsHint = value;
                 }
@@ -85,11 +84,11 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
             _hint = onOff;
         }
 
-        private void CheckIsValueTrue(int value,bool isHint)
+        private void ShowTrueFalseZones(int value)
         {
-            if (isHint)
+            if (Selected == false)
             {
-                if (TrueValue == value && value != 0)
+                if (TrueValue == value )
                 {
                     Debug.Log("True triggered");
                     DoTrueAnimation();
@@ -108,14 +107,20 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
             ParselID = new int[2];
             SetMyValueDefault();
             SetIsHintDefault();
-            SetChangable(true);
+            SetLayer(LayerMask.NameToLayer("Interactable"));
+            
         }
 
-        public void SetChangable(bool onOff)
+        private void SetLayer(int layer)
         {
-            isChangable = onOff;
+            this.gameObject.layer = layer;
 
         }
+        public void SetLayer(LayerMask mask)
+        {
+            this.gameObject.layer = mask;
+
+        } 
         private void DoTrueAnimation()
         {
             _currentAnimation.Kill();
@@ -128,6 +133,32 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
             _currentAnimation = _myImage.DOColor(Color.red, 1f);
         }
 
+        public void DoSelected()
+        {
+            Selected = true;
+            DoClickAnimation();
+        }
+
+        public void DoUnSelected(int value)
+        {
+            Selected = false;
+            if (IsHint && value != 0)
+            {
+                if (value == TrueValue)
+                {
+                    DoTrueAnimation();
+                }
+                else
+                {
+                    DoFalseAnimation();
+                }
+            }
+            else
+            {
+                DoToDefaultZoneAnimation();
+            }
+        }
+        
         public void SetMyValueDefault()
         {
             WriteValue(0);
@@ -181,6 +212,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game
         public void WriteValue(int givenvalue)
         {
             _setMyValue = givenvalue;
+            DoUnSelected(givenvalue);
         }
 
         public void SetParselID(int[] parselID)
