@@ -35,7 +35,7 @@ namespace WasderGQ.Sudoku.Scenes.LogoScene
                 yield return null;
             }
             _LogoScene.SetActive(false);
-            SceneLoader.Instance.LoadScene(Enums.Scenes.MainMenuScene);
+            SceneLoader.Instance.LoadScene(Enums.EnumScenes.MainMenuScene);
             yield break;
         }
     }

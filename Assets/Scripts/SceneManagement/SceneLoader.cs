@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using WasderGQ.Sudoku.Enums;
 using WasderGQ.Sudoku.Generic;
 
 namespace WasderGQ.Sudoku.SceneManagement
@@ -25,15 +26,15 @@ namespace WasderGQ.Sudoku.SceneManagement
 
         private void LoadFirstScene()
         {
-            LoadScene(Enums.Scenes.LogoScene);
+            LoadScene(EnumScenes.LogoScene);
         }
 
-        public void LoadScene(Enums.Scenes sceneToLoad)
+        public void LoadScene(EnumScenes enumSceneToLoad)
         {
-            StartCoroutine(LoadSceneRoutine(sceneToLoad));
+            StartCoroutine(LoadSceneRoutine(enumSceneToLoad));
         }
 
-        private IEnumerator LoadSceneRoutine(Enums.Scenes sceneName)
+        private IEnumerator LoadSceneRoutine(Enums.EnumScenes enumSceneName)
         {
             //if there are more scene than loading scene, that means there is a scene need to unload.
             if (SceneManager.sceneCount > 1)
@@ -42,13 +43,13 @@ namespace WasderGQ.Sudoku.SceneManagement
 
             
             }
-            _nextSceneLoadOperation = SceneManager.LoadSceneAsync((int)sceneName, LoadSceneMode.Additive);
+            _nextSceneLoadOperation = SceneManager.LoadSceneAsync((int)enumSceneName, LoadSceneMode.Additive);
             while (!_nextSceneLoadOperation.isDone)
             {
             
                 yield return null;
             }
-            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)sceneName));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)enumSceneName));
             Resources.UnloadUnusedAssets();
             yield break;
         }

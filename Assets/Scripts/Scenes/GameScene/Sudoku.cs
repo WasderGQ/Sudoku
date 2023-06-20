@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using WasderGQ.Sudoku.AIs;
-using WasderGQ.Sudoku.Scenes.GameScene.Game;
 using WasderGQ.Sudoku.Scenes.GameScene.Game.Boards;
 using WasderGQ.Sudoku.Scenes.GameScene.InputModuls;
 using WasderGQ.Sudoku.Scenes.MainMenuScene;
-using Object = System.Object;
+using WasderGQ.Utility.UnityEditor;
+
 
 namespace WasderGQ.Sudoku.Scenes.GameScene
 {
@@ -22,6 +20,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene
         [SerializeField] private Keyboard _keyboard;
         [SerializeField] private GameObject WaitScenePrefab;
         [SerializeField] private GameObject WaitScene;
+        [SerializeField] private GameObject CelebrationScene;
         private void Start()
         {
             InIt();
@@ -93,7 +92,23 @@ namespace WasderGQ.Sudoku.Scenes.GameScene
         {
             Destroy(WaitScene);
         }
-        
+
+        public void CheckWin()
+        {
+            foreach (var parsel in _boardList[_currentlySelectedBoard].Parsels)
+            {
+                foreach (var zone in parsel.ZonesInParsel)
+                {
+                    if(zone.MyValue != zone.TrueValue)
+                        break;
+                }
+            }
+            CelebrationScene.SetActive(true);
+            
+
+
+
+        }
 
 
 

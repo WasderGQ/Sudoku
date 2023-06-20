@@ -12,7 +12,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
         
         [SerializeField] private List<Zone> _selectedZones;
         [SerializeField] private Boardx9 boardx9;
-
+        [SerializeField] private Sudoku _sudoku;
 
 
         public void init()
@@ -25,6 +25,10 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
         {
             _selectedZones.Add(zone);
         }
+        public void RemoveZoneToList(Zone zone)
+        {
+            _selectedZones.Remove(zone);
+        }
 
         public void FillZoneWithValue(KeyboardKey key)
         {
@@ -33,13 +37,9 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.InputModuls
                 foreach (var zone in _selectedZones)
                 {
                     zone.WriteValue(key.MyValue);
-                    if (zone.IsHint == false || key.MyValue == 0)
-                    {
-                        
-                        zone.DoToDefaultZoneAnimation();
-                    }
                 }
                 _selectedZones.Clear();
+                _sudoku.CheckWin();
             }
        
        

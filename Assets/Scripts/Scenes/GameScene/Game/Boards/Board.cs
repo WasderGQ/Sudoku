@@ -13,6 +13,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
         protected Zone[,] _zones;
         [SerializeField] protected Parsel[] _parsels;
         [SerializeField] protected List<Zone> _sealedZones;
+        [SerializeField] protected LayerMask UnInteractable;
         public Parsel[] Parsels { get => _parsels; }
         public Zone[,] Zones { get => _zones; }
         
@@ -86,7 +87,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
                     break;
                 }
                 zone.WriteValue(zone.TrueValue);
-                zone.SetChangable(false);
+                zone.SetLayer(UnInteractable);
                 _sealedZones.Add(zone);
                 counter++;
             }
@@ -98,6 +99,7 @@ namespace WasderGQ.Sudoku.Scenes.GameScene.Game.Boards
             int yValueIndex = Convert.ToInt32(Mathf.Floor(Random.Range(0 , _zones.GetLength(1) - 1)));
             return _zones[xValueIndex, yValueIndex];
         }
+        
         private bool IsThereSameValue(Zone selectedZone)
         {
             foreach (var zone in _sealedZones)
